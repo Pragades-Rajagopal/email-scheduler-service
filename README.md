@@ -1,4 +1,5 @@
 # email-scheduler-service
+A simple API service to save, edit & delete email schedules. Emails will be triggered at the scheduled time.
 
 ### Setting up
 Install dependencies and create local database
@@ -9,6 +10,8 @@ Create entities in local database
 ```
 npm run migrate
 ```
+Create `.env` file in the root directory and add variables mentioned in 
+[.env.sample](.env.sample)
 
 ### Starting the application
 ```
@@ -16,4 +19,4 @@ npm start
 ```
 
 ### Link
-- Swagger documentation > http://localhost:5000/api-docs/
+Import [Collection](./email-scheduler.collection.json) to Postman for accessing the endpoints

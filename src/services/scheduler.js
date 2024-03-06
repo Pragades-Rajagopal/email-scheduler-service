@@ -41,5 +41,48 @@ module.exports = {
                 }
             })
         })
+    },
+
+    /**
+     * Update data for given schedule id
+     * @param {number} id 
+     * @param {object} data 
+     * @returns {string}
+     */
+    updateSchedule: (id, data) => {
+        const sql = `
+            UPDATE scheduler
+            SET _date = ?,
+            _time = ?,
+            send_to = ?
+            WHERE id = ?;
+        `;
+        return new Promise((resolve, reject) => {
+            db.run(sql, [data.date, data.time, data.sendTo, id], (err) => {
+                if (err) {
+                    reject('error while updating schedule')
+                } else {
+                    resolve('updated')
+                }
+            });
+        });
+    },
+
+    /**
+     * Deletes a schedule
+     * @param {number} id 
+     * @returns {string}
+     */
+    deleteSchedule: (id) => {
+        const sql = `DELETE FROM scheduler WHERE id = ${id}`;
+        return new Promise((resolve, reject) => {
+            db.run(sql, [], (err) => {
+                if (err) {
+                    reject('error while deleting schedule')
+                } else {
+                    resolve('deleted')
+                }
+            })
+        });
     }
 }
